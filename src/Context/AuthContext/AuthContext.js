@@ -3,6 +3,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import React, { createContext, useEffect, useState } from "react";
 import auth from "../../Authentication/Firebase/Firebase";
@@ -17,6 +18,9 @@ const AuthContext = ({ children }) => {
   const SignIn = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
+  const userProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile);
+  };
   const SignOut = () => {
     return signOut(auth);
   };
@@ -28,7 +32,13 @@ const AuthContext = ({ children }) => {
       unSubscribe();
     };
   }, []);
-  const authInformation = { user, SignUpWithForm,SignIn, SignOut };
+  const authInformation = {
+    user,
+    SignUpWithForm,
+    SignIn,
+    userProfile,
+    SignOut,
+  };
 
   return (
     <>

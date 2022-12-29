@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { AuthProvider } from "../../Context/AuthContext/AuthContext";
 
 const SignUp = () => {
-  const { SignUpWithForm } = useContext(AuthProvider);
+  const { SignUpWithForm, userProfile } = useContext(AuthProvider);
   const formSubmit = (event) => {
     event.preventDefault();
     const SignInNotify = () =>
@@ -22,6 +22,7 @@ const SignUp = () => {
       .then((userInfo) => {
         console.log(userInfo.user);
         SignInNotify();
+        updateUserProfile(name)
         formName.reset();
       })
       .catch((error) => {
@@ -29,6 +30,10 @@ const SignUp = () => {
         SignInNotifyError();
       });
   };
+  const updateUserProfile = (name) =>{
+    const userInfo = {displayName: name};
+    userProfile(userInfo);
+  }
   return (
     <>
       <section className="py-10 bg-gray-50 sm:py-16 lg:py-24">
