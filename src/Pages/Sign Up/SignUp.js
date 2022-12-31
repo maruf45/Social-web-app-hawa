@@ -1,12 +1,17 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthProvider } from "../../Context/AuthContext/AuthContext";
 
 const SignUp = () => {
   const { SignUpWithForm, userProfile, googlePopUp } = useContext(AuthProvider);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const form = location?.state?.from?.pathName || '/';
+
   const formSubmit = (event) => {
     event.preventDefault();
+
     const SignInNotify = () =>
       toast.success(
         `Welcome ${event.target.name.value} successfully Created your Account`
@@ -16,7 +21,7 @@ const SignUp = () => {
     const name = formName.name.value;
     const email = formName.email.value;
     const password = formName.password.value;
-    const userData = {name, email, phone: null}
+    const userData = {name, email, phone: null, photoUrl: null}
     SignUpWithForm(email, password)
       .then((userInfo) => {
         console.log(userInfo.user);
@@ -30,6 +35,7 @@ const SignUp = () => {
           body: JSON.stringify(userData)
         })
         formName.reset();
+        navigate(form, {replace: true});
       })
       .catch((error) => {
         console.log(error.message);
@@ -45,6 +51,7 @@ const SignUp = () => {
     .then((userinfo) => {
         const user = userinfo.user;
         toast.success(`Welcome ${user.displayName} successfully Created your Account`);
+        navigate(form, {replace: true});
     })
     .catch(error => console.log(error.message))
   }

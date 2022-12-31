@@ -7,7 +7,7 @@ const Navbar = () => {
   const signOut = () => {
     SignOut().then(() => {});
   };
-  const pathName = [{ name: "Home", path: "/home" }];
+  const pathName = [{ name: "Home", path: "/" }];
   if (user?.uid) {
     const elements = [
       { name: "My Post", path: "/my-post" },

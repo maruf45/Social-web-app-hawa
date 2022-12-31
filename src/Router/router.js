@@ -1,4 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
+import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
+import Home from "../Pages/Home/Home";
 import MainLayout from "../Pages/MainLayout/MainLayout";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import SignIn from "../Pages/Sign In/SignIn";
@@ -9,6 +11,7 @@ export const Router = createBrowserRouter([
     path: "/",
     element: <MainLayout />,
     children: [
+      { path: "/", element: <Home /> },
       {
         path: "/sign-in",
         element: <SignIn />,
@@ -19,7 +22,11 @@ export const Router = createBrowserRouter([
       },
       {
         path: "/my-profile",
-        element: <MyProfile />,
+        element: (
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        ),
       },
     ],
   },

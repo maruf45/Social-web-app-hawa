@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthProvider } from "../../Context/AuthContext/AuthContext";
 import { toast } from "react-toastify";
 
 const SignIn = () => {
   const { SignIn, googlePopUp } = useContext(AuthProvider);
+  const navigate = useNavigate();
+  const locations = useLocation();
+  const form = locations?.state?.form.pathName || '/';
   const formSubmit = (event) => {
     event.preventDefault();
     const formName = event.target;
@@ -15,6 +18,7 @@ const SignIn = () => {
         const user = userinfo.user;
         toast.success(`Welcome Back ${user.displayName}`);
         formName.reset();
+        navigate(form, {replace: true});
       })
       .catch((error) => {
         toast.error(`Oops!! Something went wrong`);
@@ -26,6 +30,7 @@ const SignIn = () => {
       .then((userinfo) => {
         const user = userinfo.user;
         toast.success(`Welcome Back ${user.displayName}`);
+        navigate(form, {replace: true});
       })
       .catch((error) => console.log(error.message));
   };
