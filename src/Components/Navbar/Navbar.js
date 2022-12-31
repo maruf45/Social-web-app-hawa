@@ -3,15 +3,20 @@ import { Link } from "react-router-dom";
 import { AuthProvider } from "../../Context/AuthContext/AuthContext";
 
 const Navbar = () => {
-  const { user ,SignOut } = useContext(AuthProvider);
-  const signOut = () =>  {
-    SignOut()
-    .then(() => {})
+  const { user, SignOut } = useContext(AuthProvider);
+  const signOut = () => {
+    SignOut().then(() => {});
+  };
+  const pathName = [{ name: "Home", path: "/home" }];
+  if (user?.uid) {
+    const elements = [
+      { name: "My Post", path: "/my-post" },
+      { name: "My Profile", path: "my-profile" },
+    ];
+    
+    pathName.push(...elements);
   }
-  const pathName = [
-    { name: "Home", path: "/home" },
-    { name: "My Post", path: "/my-post" },
-  ];
+  console.log(pathName);
   const LoginPath = [
     { name: "Sign In", path: "/sign-in" },
     { name: "Sign Up", path: "/sign-up" },

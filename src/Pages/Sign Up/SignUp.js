@@ -16,12 +16,19 @@ const SignUp = () => {
     const name = formName.name.value;
     const email = formName.email.value;
     const password = formName.password.value;
-    console.log(name, email, password);
+    const userData = {name, email, phone: null}
     SignUpWithForm(email, password)
       .then((userInfo) => {
         console.log(userInfo.user);
         SignInNotify();
         updateUserProfile(name);
+        fetch('http://localhost:5000/usersData', {
+          method: 'POST',
+          headers: {
+            "content-type": 'application/json',
+          },
+          body: JSON.stringify(userData)
+        })
         formName.reset();
       })
       .catch((error) => {
