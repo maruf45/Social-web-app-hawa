@@ -6,9 +6,11 @@ import Loader from '../Loader/Loader';
 const PrivateRoute = ({children}) => {
     const {user, loading} = useContext(AuthProvider);
     const locations = useLocation();
+
     if(loading){
         return <Loader/>
     }
+
     if(user?.uid){
         return children;
     }
