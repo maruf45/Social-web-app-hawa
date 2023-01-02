@@ -24,12 +24,12 @@ const MyProfile = () => {
               <p className="text-2xl font-bold">My Profile</p>
               <p
                 onClick={() => setEdit(false)}
-                className="hover:cursor-pointer py-3 px-4 rounded-full hover:bg-orange-500 hover:text-white transition ease-in-out delay-150 border"
+                className="hover:cursor-pointer py-[8px] px-[15px] rounded-lg hover:bg-orange-500 hover:text-white transition ease-in-out delay-150 border"
               >
                 Edit
               </p>
             </div>
-              <hr class="my-2 mb-6 border border-orange-200 px-3"></hr>
+              <hr className="my-2 mb-6 border border-orange-200 px-3"></hr>
             <div className=" md:flex md:items-center md:space-x-14">
               <div className="relative flex-shrink-0 w-48 h-48">
                 <div className="absolute w-48 h-48 bg-gray-300 rounded-full -bottom-2 -right-1"></div>

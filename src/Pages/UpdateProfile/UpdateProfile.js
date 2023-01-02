@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const UpdateProfile = ({users}) => {
@@ -32,23 +33,28 @@ const UpdateProfile = ({users}) => {
   }
 
   useEffect(() => {
-    const photo = field?.target?.files[0];
-    const imageKey = "88610f1b26ed57a276b228b81522cce8";
-    const url = `https://api.imgbb.com/1/upload?key=${imageKey}`;
-    const formData = new FormData();
-    formData.append("image", photo);
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then(data => {
-        const img = data?.data?.url;
-        setPreviewImage(img);
+    if( field?.target?.files ){
+      const photo = field?.target?.files[0];
+      const imageKey = "88610f1b26ed57a276b228b81522cce8";
+      const url = `https://api.imgbb.com/1/upload?key=${imageKey}`;
+      const formData = new FormData();
+      formData.append("image", photo);
+      fetch(url, {
+        method: "POST",
+        body: formData,
       })
-
-  }, [field?.target?.files])
+        .then((res) => res.json())
+        .then(data => {
+          const img = data?.data?.url;
+          setPreviewImage(img);
+        })
   
+    }
+    else{
+      setPreviewImage(photoUrl);
+    }
+   
+  }, [field?.target?.files, photoUrl])
   
   return (
     <>
@@ -56,11 +62,11 @@ const UpdateProfile = ({users}) => {
         <div className="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8 shadow-md pb-24 px-5 rounded-md">
           <div className="flex justify-between items-center px-3">
             <p className="text-2xl font-bold">Update Profile</p>
-            <p className="hover:cursor-pointer py-3 px-4 rounded-full hover:bg-orange-500 hover:text-white transition ease-in-out delay-150 border">
+            <p className="hover:cursor-pointer py-[8px] px-[15px] rounded-lg hover:bg-orange-500 hover:text-white transition ease-in-out delay-150 border">
               Edit
             </p>
           </div>
-          <hr class="mt-3 mb-3 px-3 border border-orange-200"></hr>
+          <hr className="mt-3 mb-3 px-3 border border-orange-200"></hr>
           <form onSubmit={usersUpdatedData}>
             <div className="md:flex md:items-center md:space-x-14">
               <div className="relative flex-shrink-0 w-48 h-48">
@@ -124,7 +130,7 @@ const UpdateProfile = ({users}) => {
               </div>
             </div>
             <div className="flex justify-start mt-[15px] md:justify-end items-center">
-            <button type="submit" className="border flex items-center py-[8px] px-[15px] block rounded-lg">Save</button>
+            <button type="submit" className="border flex items-center py-[8px] px-[15px] block rounded-lg">Save Changes</button>
             </div>
           </form>
         </div>
