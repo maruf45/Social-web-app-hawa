@@ -20,7 +20,7 @@ const MyProfile = () => {
       {edit ? (
         <section className="py-10 bg-white sm:py-16 lg:py-24">
           <div className="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8 shadow-md pb-24 px-5 rounded-md">
-            <div className="mb-8  flex justify-between items-center  py-2 px-3">
+            <div className="flex justify-between items-center px-3">
               <p className="text-2xl font-bold">My Profile</p>
               <p
                 onClick={() => setEdit(false)}
@@ -29,7 +29,8 @@ const MyProfile = () => {
                 Edit
               </p>
             </div>
-            <div className="md:flex md:items-center md:space-x-14">
+              <hr class="my-2 mb-6 border border-orange-200 px-3"></hr>
+            <div className=" md:flex md:items-center md:space-x-14">
               <div className="relative flex-shrink-0 w-48 h-48">
                 <div className="absolute w-48 h-48 bg-gray-300 rounded-full -bottom-2 -right-1"></div>
                 <img

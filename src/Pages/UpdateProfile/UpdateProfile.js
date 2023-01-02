@@ -54,12 +54,13 @@ const UpdateProfile = ({users}) => {
     <>
       <section className="py-10 bg-white sm:py-16 lg:py-24">
         <div className="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8 shadow-md pb-24 px-5 rounded-md">
-          <div className="mb-8  flex justify-between items-center  py-2 px-3">
+          <div className="flex justify-between items-center px-3">
             <p className="text-2xl font-bold">Update Profile</p>
             <p className="hover:cursor-pointer py-3 px-4 rounded-full hover:bg-orange-500 hover:text-white transition ease-in-out delay-150 border">
               Edit
             </p>
           </div>
+          <hr class="mt-3 mb-3 px-3 border border-orange-200"></hr>
           <form onSubmit={usersUpdatedData}>
             <div className="md:flex md:items-center md:space-x-14">
               <div className="relative flex-shrink-0 w-48 h-48">
@@ -78,12 +79,14 @@ const UpdateProfile = ({users}) => {
                   alt=""
                 />
               }
-              <label htmlFor="img-btn" className="border py-[8px] px-[15px] block text-center w-max cursor-pointer mx-auto rounded-lg mt-5">Edit Profile</label>
+             <div className="md:mb-5 mb-5 flex justify-start md:justify-center items-center mt-5">
+             <label htmlFor="img-btn" className="border py-[8px] px-[15px] block text-center w-max cursor-pointer rounded-lg">Edit Profile</label>
                 <input type='file' id="img-btn" name='fileUpload' onChange={setField} className="d-none" />
+             </div>
               </div>
 
-              <div className="mt-10 md:mt-0">
-                <label className="font-bold text-slate-900" htmlFor="Name">
+              <div className="mt-[75px] md:mt-10">
+                <label className="font-bold text-slate-900 " htmlFor="Name">
                   Full Name
                 </label>
                 <input
@@ -120,9 +123,8 @@ const UpdateProfile = ({users}) => {
                 />
               </div>
             </div>
-            <div className="flex justify-end">
-
-            <button type="submit" className="border py-[8px] px-[15px] block rounded-lg mt-5">Save</button>
+            <div className="flex justify-start mt-[15px] md:justify-end items-center">
+            <button type="submit" className="border flex items-center py-[8px] px-[15px] block rounded-lg">Save</button>
             </div>
           </form>
         </div>

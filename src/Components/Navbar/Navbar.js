@@ -8,19 +8,19 @@ const Navbar = () => {
   const signOut = () => {
     SignOut().then(() => {});
   };
-  const pathName = [{ name: "Home", path: "/" }];
+  const pathName = [{id: '649846', name: "Home", path: "/" }];
+
   if (user?.uid) {
     const elements = [
-      { name: "My Post", path: "/my-post" },
-      { name: "My Profile", path: "my-profile" },
+      { id: '64675754',name: "My Post", path: "/my-post" },
+      { id: '654654654',name: "My Profile", path: "my-profile" },
     ];
     
     pathName.push(...elements);
   }
-  console.log(pathName);
   const LoginPath = [
-    { name: "Sign In", path: "/sign-in" },
-    { name: "Sign Up", path: "/sign-up" },
+    {id: '64562165', name: "Sign In", path: "/sign-in" },
+    {id: '324541021', name: "Sign Up", path: "/sign-up" },
   ];
   return (
     <>
@@ -31,9 +31,8 @@ const Navbar = () => {
             <nav className="relative flex items-center justify-between h-16 lg:h-20">
               <div className="hidden lg:flex lg:items-center lg:space-x-10">
                 {pathName.map((name) => (
-                  <React.Fragment>
-                    <Link to={name.path} key={name.path}>
-                      {" "}
+                  <React.Fragment key={name.id}>
+                    <Link to={name.path} >
                       {name.name}
                     </Link>
                   </React.Fragment>
@@ -73,8 +72,8 @@ const Navbar = () => {
               ) : (
                 <div className="hidden lg:flex lg:items-center lg:space-x-10">
                   {LoginPath.map((loginPath) => (
-                    <React.Fragment>
-                      <Link to={loginPath.path} key={loginPath.path}>
+                    <React.Fragment key={loginPath.id}>
+                      <Link to={loginPath.path}>
                         {loginPath.name}
                       </Link>
                     </React.Fragment>
@@ -118,18 +117,18 @@ const Navbar = () => {
             <div className="mt-6">
               <div className="flex flex-col space-y-2">
                 {pathName.map((name) => (
-                  <>
+                  <React.Fragment key={name.id}>
                     <Link to={name.path}> {name.name}</Link>
-                  </>
+                  </React.Fragment>
                 ))}{" "}
               </div>
 
               <hr className="my-4 border-gray-200" />
 
               <div className="flex flex-col space-y-2">
-                {LoginPath.map((loginPath, index) => (
+                {LoginPath.map((loginPath) => (
                   <>
-                    <Link to={loginPath.path} key={index}>
+                    <Link to={loginPath.path} key={loginPath.id}>
                       {loginPath.name}
                     </Link>
                   </>
