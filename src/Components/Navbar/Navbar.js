@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthProvider } from "../../Context/AuthContext/AuthContext";
 
 const Navbar = () => {
   const { user, SignOut } = useContext(AuthProvider);
+  const [navClose, setNavClose] = useState(true);
   const signOut = () => {
     SignOut().then(() => {});
   };
@@ -49,6 +50,7 @@ const Navbar = () => {
 
               <button
                 type="button"
+                onClick={() => setNavClose(false)}
                 className="inline-flex p-2 ml-5 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100"
               >
                 <svg
@@ -84,7 +86,7 @@ const Navbar = () => {
         </div>
 
         {/* <!-- xs to lg --> */}
-        <nav className="py-4 bg-white lg:hidden">
+        <nav className={`${navClose ? `d-none` : ''} py-4 bg-white lg:hidden`}>
           <div className="px-4 mx-auto sm:px-6 lg:px-8">
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold tracking-widest text-gray-400 uppercase">
@@ -93,7 +95,8 @@ const Navbar = () => {
 
               <button
                 type="button"
-                className="inline-flex p-2 text-black transition-all duration-200 rounded-md focus:bg-gray-100 hover:bg-gray-100"
+                onClick={() => setNavClose(true)}
+                className={`inline-flex p-2 text-black transition-all duration-200 rounded-md focus:bg-gray-100 hover:bg-gray-100`}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

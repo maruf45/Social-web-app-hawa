@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { AuthProvider } from "../../Context/AuthContext/AuthContext";
 
 const UpdateProfile = ({users}) => {
   const {name, photoUrl, email, phone} = users;
