@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const UpdateProfile = ({users}) => {
+const UpdateProfile = ({users, setEdit}) => {
   const {name, photoUrl, email, phone} = users;
   const [field, setField] = useState([]);
   const [previewImage, setPreviewImage] = useState(null);
@@ -58,19 +57,23 @@ const UpdateProfile = ({users}) => {
   
   return (
     <>
-      <section className="py-10 bg-white sm:py-16 lg:py-24">
-        <div className="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8 shadow-md pb-24 px-5 rounded-md">
+      <section className="pt-10 bg-white sm:py-16 lg:py-24">
+        <div className="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8 shadow-md shadow-orange-100 pb-24 px-5 rounded-md">
           <div className="flex justify-between items-center px-3">
             <p className="text-2xl font-bold">Update Profile</p>
-            <p className="hover:cursor-pointer py-[8px] px-[15px] rounded-lg hover:bg-orange-500 hover:text-white transition ease-in-out delay-150 border">
-              Edit
+            <p onClick={() => setEdit(true)} className="hover:cursor-pointer hover:cursor-pointer  mr-4 py-2 px-4
+                rounded-full border-0
+                text-sm font-semibold
+                bg-orange-50 text-orange-700
+                hover:bg-orange-100">
+              Cancel Edit
             </p>
           </div>
-          <hr className="mt-3 mb-3 px-3 border border-orange-200"></hr>
+          <hr className="mt-2 mb-6  px-3 border border-orange-200"></hr>
           <form onSubmit={usersUpdatedData}>
             <div className="md:flex md:items-center md:space-x-14">
-              <div className="relative flex-shrink-0 w-48 h-48">
-                <div className="absolute w-48 h-48 bg-gray-300 rounded-full -bottom-2 -right-1"></div>
+            <div className="relative justify-center flex-shrink-0 mx-auto w-48 h-48">
+                <div className="absolute w-48 h-48 rounded-full shadow-orange-300 rounded-full -bottom-1 -right-2 shadow-xl scale-90"></div>
                 {previewImage ?
                 
                 <img
@@ -85,11 +88,15 @@ const UpdateProfile = ({users}) => {
                   alt=""
                 />
               }
-             <div className="md:mb-5 mb-5 flex justify-start md:justify-center items-center mt-5">
-             <label htmlFor="img-btn" className="border py-[8px] px-[15px] block text-center w-max cursor-pointer rounded-lg">Edit Profile</label>
+             <div className="md:mb-5 mb-5 flex justify-center mb-3">
+             <label htmlFor="img-btn" className="hover:cursor-pointer mt-5 mb-5 py-2 px-4
+                rounded-full border-0
+                text-sm font-semibold
+                bg-orange-50 text-orange-700
+                hover:bg-orange-100">Edit Profile</label>
                 <input type='file' id="img-btn" name='fileUpload' onChange={setField} className="d-none" />
              </div>
-              </div>
+          </div>
 
               <div className="mt-[75px] md:mt-10">
                 <label className="font-bold text-slate-900 " htmlFor="Name">
@@ -130,7 +137,11 @@ const UpdateProfile = ({users}) => {
               </div>
             </div>
             <div className="flex justify-start mt-[15px] md:justify-end items-center">
-            <button type="submit" className="border flex items-center py-[8px] px-[15px] block rounded-lg">Save Changes</button>
+            <button type="submit" className="max-[768px]:w-full hover:cursor-pointer py-[10px] px-[16px]
+                rounded-lg border-0
+                text-sm font-semibold
+                bg-orange-50 text-orange-700
+                hover:bg-orange-100">Save Changes</button>
             </div>
           </form>
         </div>
