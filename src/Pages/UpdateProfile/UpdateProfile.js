@@ -30,6 +30,7 @@ const UpdateProfile = ({users, setEdit}) => {
       console.log(data);
     })
   }
+  
 
   useEffect(() => {
     if( field?.target?.files ){
