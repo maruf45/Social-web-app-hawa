@@ -27,7 +27,7 @@ const SignUp = () => {
         console.log(userInfo.user);
         SignInNotify();
         updateUserProfile(name);
-        fetch('http://localhost:5000/usersData', {
+        fetch('https://server-psi-two.vercel.app/usersData', {
           method: 'POST',
           headers: {
             "content-type": 'application/json',

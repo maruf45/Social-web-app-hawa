@@ -42,7 +42,7 @@ const Home = () => {
     const postText = filed.postText.value;
     const image = previewImage;
     const postInfo = { email: user?.email, postText, image };
-    fetch("http://localhost:5000/usersPost", {
+    fetch("https://server-psi-two.vercel.app/usersPost", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -60,7 +60,7 @@ const Home = () => {
       });
   };
   useEffect(() => {
-    fetch(`http://localhost:5000/usersPost`)
+    fetch(`https://server-psi-two.vercel.app/usersPost`)
       .then((res) => res.json())
       .then((data) => {
         setPostData(data)

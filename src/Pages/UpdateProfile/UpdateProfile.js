@@ -13,7 +13,7 @@ const UpdateProfile = ({users, setEdit}) => {
     const phone = field.phone.value;
     const updateProfileInfo = {name, email, phone, photoUrl: previewImage};
     console.log(updateProfileInfo);
-    fetch('http://localhost:5000/usersData', {
+    fetch('https://server-psi-two.vercel.app/usersData', {
       method: 'PUT',
       headers: {
         'content-type': 'application/json'

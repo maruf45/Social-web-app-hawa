@@ -7,7 +7,7 @@ const MyProfile = () => {
   const [edit, setEdit] = useState(true);
   const [users, setUsers] = useState({});
   useEffect(() => {
-    fetch(`http://localhost:5000/usersData?email=${user?.email}`)
+    fetch(`https://server-psi-two.vercel.app/usersData?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
